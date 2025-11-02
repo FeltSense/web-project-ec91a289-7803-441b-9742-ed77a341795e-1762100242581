@@ -6,12 +6,12 @@ export default function ContactForm() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
@@ -80,7 +80,7 @@ export default function ContactForm() {
 
       {/* Right Side - Form Card */}
       <div className="bg-white rounded-2xl shadow-lg p-12 border border-slate-200">
-        <div className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
               Full Name
@@ -155,7 +155,7 @@ export default function ContactForm() {
           <p className="text-sm text-gray-500 text-center">
             We respect your privacy and will never share your information.
           </p>
-        </div>
+        </form>
       </div>
     </div>
   </div>
